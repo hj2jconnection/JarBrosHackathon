@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Football Stats Tracker 🏈</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>🏈 College Football Stats Tracker</h1>
+        <p>Track your favorite teams and players throughout the season!</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#dashboard" class="active">Dashboard</a></li>
+            <li><a href="#player-stats">Player Stats</a></li>
+            <li><a href="#game-results">Game Results</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="dashboard" class="content-section">
+            <h2>🏟️ Team Dashboard</h2>
+            
+            <div class="team-selector">
+                <label for="teamSelect">Select Your Team:</label>
+                <select id="teamSelect">
+                    <option value="">Choose a team...</option>
+                    <option value="alabama">Alabama Crimson Tide</option>
+                    <option value="georgia">Georgia Bulldogs</option>
+                    <option value="ohio-state">Ohio State Buckeyes</option>
+                    <option value="michigan">Michigan Wolverines</option>
+                    <option value="clemson">Clemson Tigers</option>
+                    <option value="texas">Texas Longhorns</option>
+                    <option value="florida">Florida Gators</option>
+                    <option value="lsu">LSU Tigers</option>
+                </select>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="team-info" id="teamInfo" style="display: none;">
+                    <h3 id="teamName">Team Name</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>Season Record</h4>
+                            <p id="teamRecord">0-0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Conference</h4>
+                            <p id="teamConference">SEC</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Ranking</h4>
+                            <p id="teamRanking">#1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-highlights">
+                    <div class="highlight-card">
+                        <h3>👨‍💻 Hayden's Contribution</h3>
+                        <p>Built the main dashboard and team selection system</p>
+                        <div class="feature-status">✅ Complete</div>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>👦 Brother's Task</h3>
+                        <p>Will add the player statistics input form</p>
+                        <div class="feature-status">⏳ Pending</div>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>👨‍🦳 Dad's Task</h3>
+                        <p>Will create game results and standings display</p>
+                        <div class="feature-status">⏳ Pending</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="player-stats" class="content-section" style="display: none;">
+            <h2>📊 Player Statistics</h2>
+            <div id="player-form-container">
+                <p>The player statistics input form will be added here by Brother!</p>
+                <p>Features to include:</p>
+                <ul>
+                    <li>Player name and position</li>
+                    <li>Passing yards, touchdowns, interceptions</li>
+                    <li>Rushing yards and touchdowns</li>
+                    <li>Receiving yards and touchdowns</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="game-results" class="content-section" style="display: none;">
+            <h2>🏆 Game Results & Standings</h2>
+            <div id="game-results-container">
+                <p>The game results and standings will be displayed here by Dad!</p>
+                <p>Features to include:</p>
+                <ul>
+                    <li>Recent game scores</li>
+                    <li>Conference standings</li>
+                    <li>Season schedule</li>
+                    <li>Team comparison tools</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by the Family Team</p>
+        <p>College Football Season 2024 | Hackathon Practice Session</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
