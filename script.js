@@ -60,10 +60,38 @@ const teamData = {
     }
 };
 
+// Dad added ↓
+// Sample game results data
+const gameResults = [
+    {
+        home: 'alabama',
+        away: 'georgia',
+        homeScore: 27,
+        awayScore: 30,
+        date: '2024-12-07'
+    },
+    {
+        home: 'ohio-state',
+        away: 'michigan',
+        homeScore: 20,
+        awayScore: 24,
+        date: '2024-11-30'
+    },
+    {
+        home: 'texas',
+        away: 'lsu',
+        homeScore: 31,
+        awayScore: 28,
+        date: '2024-11-23'
+    }
+];
+// Dad added ↑
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeTeamSelector();
+    displayGameResults();  // Dad added
 });
 
 // Navigation functionality
@@ -145,15 +173,39 @@ function addPlayerStats() {
     console.log('Player stats form will be implemented by Brother');
 }
 
+// Dad added ↓
+// Display recent game results
 function displayGameResults() {
-    console.log('Game results will be implemented by Dad');
+    const resultsContainer = document.getElementById('gameResults');
+    if (!resultsContainer) return;
+
+    resultsContainer.innerHTML = ''; // clear old results
+
+    gameResults.forEach(game => {
+        const homeTeam = teamData[game.home];
+        const awayTeam = teamData[game.away];
+
+        const gameDiv = document.createElement('div');
+        gameDiv.classList.add('game-result');
+
+        gameDiv.innerHTML = `
+            <strong>${homeTeam.name}</strong> (${game.homeScore}) 
+            vs 
+            <strong>${awayTeam.name}</strong> (${game.awayScore}) 
+            <br><small>${new Date(game.date).toLocaleDateString()}</small>
+        `;
+
+        resultsContainer.appendChild(gameDiv);
+    });
 }
+// Dad added ↑
 
 // Export functions for potential use by other team members
 window.FootballTracker = {
     teamData,
+    gameResults, // Dad added
     addPlayerStats,
-    displayGameResults,
+    displayGameResults, // Dad added
     formatNumber,
     getCurrentSeason
 };
