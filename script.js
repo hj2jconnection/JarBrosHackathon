@@ -176,7 +176,7 @@ function addPlayerStats() {
 // Dad added ↓
 // Display recent game results
 function displayGameResults() {
-    const resultsContainer = document.getElementById('gameResults');
+    const resultsContainer = document.getElementById('game-results-container');
     if (!resultsContainer) return;
 
     resultsContainer.innerHTML = ''; // clear old results
