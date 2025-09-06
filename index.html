@@ -17,6 +17,7 @@
             <li><a href="#dashboard" class="active">Dashboard</a></li>
             <li><a href="#player-stats">Player Stats</a></li>
             <li><a href="#game-results">Game Results</a></li>
+            <li><a href="#team-comparison">Team Comparison</a></li>
         </ul>
     </nav>
 
@@ -103,6 +104,94 @@
                     <li>Season schedule</li>
                     <li>Team comparison tools</li>
                 </ul>
+            </div>
+        </section>
+
+        <section id="team-comparison" class="content-section" style="display: none;">
+            <h2>⚡ Team Comparison</h2>
+            <div class="comparison-container">
+                <div class="team-selector-row">
+                    <div class="selector-group">
+                        <label for="teamA">Team A:</label>
+                        <select id="teamA">
+                            <option value="">Choose first team...</option>
+                            <option value="alabama">Alabama Crimson Tide</option>
+                            <option value="georgia">Georgia Bulldogs</option>
+                            <option value="ohio-state">Ohio State Buckeyes</option>
+                            <option value="michigan">Michigan Wolverines</option>
+                            <option value="clemson">Clemson Tigers</option>
+                            <option value="texas">Texas Longhorns</option>
+                            <option value="florida">Florida Gators</option>
+                            <option value="lsu">LSU Tigers</option>
+                        </select>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="selector-group">
+                        <label for="teamB">Team B:</label>
+                        <select id="teamB">
+                            <option value="">Choose second team...</option>
+                            <option value="alabama">Alabama Crimson Tide</option>
+                            <option value="georgia">Georgia Bulldogs</option>
+                            <option value="ohio-state">Ohio State Buckeyes</option>
+                            <option value="michigan">Michigan Wolverines</option>
+                            <option value="clemson">Clemson Tigers</option>
+                            <option value="texas">Texas Longhorns</option>
+                            <option value="florida">Florida Gators</option>
+                            <option value="lsu">LSU Tigers</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="comparison-results" id="comparisonResults" style="display: none;">
+                    <div class="team-card" id="teamACard">
+                        <h3 id="teamAName">Team A</h3>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Record:</span>
+                                <span class="stat-value" id="teamARecord">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Conference:</span>
+                                <span class="stat-value" id="teamAConference">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Ranking:</span>
+                                <span class="stat-value" id="teamARanking">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-winner" id="comparisonWinner">
+                        <div class="winner-badge">🏆 Better Record</div>
+                        <div class="winner-text" id="winnerText">Select teams to compare</div>
+                    </div>
+
+                    <div class="team-card" id="teamBCard">
+                        <h3 id="teamBName">Team B</h3>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Record:</span>
+                                <span class="stat-value" id="teamBRecord">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Conference:</span>
+                                <span class="stat-value" id="teamBConference">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Ranking:</span>
+                                <span class="stat-value" id="teamBRanking">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-highlight">
+                    <div class="highlight-card">
+                        <h3>🧑‍💻 Thomas's Contribution</h3>
+                        <p>Built the team comparison feature for head-to-head analysis</p>
+                        <div class="feature-status">✅ Complete</div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

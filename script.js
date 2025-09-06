@@ -64,6 +64,7 @@ const teamData = {
 document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeTeamSelector();
+    initializeTeamComparison();
 });
 
 // Navigation functionality
@@ -138,6 +139,74 @@ function getCurrentSeason() {
     
     // If it's before August, we're in the previous year's season
     return month < 7 ? year - 1 : year;
+}
+
+// Team comparison functionality
+function initializeTeamComparison() {
+    const teamASelect = document.getElementById('teamA');
+    const teamBSelect = document.getElementById('teamB');
+    const comparisonResults = document.getElementById('comparisonResults');
+    
+    if (teamASelect && teamBSelect) {
+        teamASelect.addEventListener('change', updateComparison);
+        teamBSelect.addEventListener('change', updateComparison);
+    }
+}
+
+function updateComparison() {
+    const teamAKey = document.getElementById('teamA').value;
+    const teamBKey = document.getElementById('teamB').value;
+    const comparisonResults = document.getElementById('comparisonResults');
+    
+    if (teamAKey && teamBKey && teamAKey !== teamBKey) {
+        const teamA = teamData[teamAKey];
+        const teamB = teamData[teamBKey];
+        
+        displayComparisonResults(teamA, teamB);
+        comparisonResults.style.display = 'flex';
+    } else {
+        comparisonResults.style.display = 'none';
+    }
+}
+
+function displayComparisonResults(teamA, teamB) {
+    // Update Team A
+    document.getElementById('teamAName').textContent = teamA.name;
+    document.getElementById('teamARecord').textContent = teamA.record;
+    document.getElementById('teamAConference').textContent = teamA.conference;
+    document.getElementById('teamARanking').textContent = teamA.ranking;
+    
+    // Update Team B
+    document.getElementById('teamBName').textContent = teamB.name;
+    document.getElementById('teamBRecord').textContent = teamB.record;
+    document.getElementById('teamBConference').textContent = teamB.conference;
+    document.getElementById('teamBRanking').textContent = teamB.ranking;
+    
+    // Apply team colors
+    const teamACard = document.getElementById('teamACard');
+    const teamBCard = document.getElementById('teamBCard');
+    
+    teamACard.style.background = `linear-gradient(135deg, ${teamA.colors[0]}15 0%, ${teamA.colors[1]}15 100%)`;
+    teamACard.style.borderLeftColor = teamA.colors[0];
+    
+    teamBCard.style.background = `linear-gradient(135deg, ${teamB.colors[0]}15 0%, ${teamB.colors[1]}15 100%)`;
+    teamBCard.style.borderLeftColor = teamB.colors[0];
+    
+    // Determine winner based on wins
+    const teamAWins = parseInt(teamA.record.split('-')[0]);
+    const teamBWins = parseInt(teamB.record.split('-')[0]);
+    
+    const winnerText = document.getElementById('winnerText');
+    if (teamAWins > teamBWins) {
+        winnerText.textContent = `${teamA.name} has more wins`;
+        winnerText.style.color = teamA.colors[0];
+    } else if (teamBWins > teamAWins) {
+        winnerText.textContent = `${teamB.name} has more wins`;
+        winnerText.style.color = teamB.colors[0];
+    } else {
+        winnerText.textContent = 'Both teams have equal wins';
+        winnerText.style.color = '#333';
+    }
 }
 
 // Placeholder functions for future features
