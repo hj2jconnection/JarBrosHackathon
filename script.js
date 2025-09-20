@@ -5,8 +5,8 @@ const teamData = {
     'alabama': {
         name: 'Alabama Crimson Tide',
         conference: 'SEC',
-        record: '11-1',
-        ranking: '#4',
+        record: '9-4',
+        ranking: '#17',
         colors: ['#9E1B32', '#FFFFFF']
     },
     'georgia': {
@@ -57,32 +57,173 @@ const teamData = {
         record: '9-3',
         ranking: '#13',
         colors: ['#461D7C', '#FDD023']
+    },
+    'western-kentucky': {
+        name: 'Western Kentucky Hilltoppers',
+        conference: 'C-USA',
+        record: '8-5',
+        ranking: 'Unranked',
+        colors: ['#C5002F', '#000000']
+    },
+    'south-florida': {
+        name: 'South Florida Bulls',
+        conference: 'American',
+        record: '4-8',
+        ranking: 'Unranked',
+        colors: ['#00723E', '#CFC493']
+    },
+    'wisconsin': {
+        name: 'Wisconsin Badgers',
+        conference: 'Big Ten',
+        record: '5-7',
+        ranking: 'Unranked',
+        colors: ['#C5002F', '#FFFFFF']
+    },
+    'vanderbilt': {
+        name: 'Vanderbilt Commodores',
+        conference: 'SEC',
+        record: '6-7',
+        ranking: 'Unranked',
+        colors: ['#866D4B', '#000000']
+    },
+    'south-carolina': {
+        name: 'South Carolina Gamecocks',
+        conference: 'SEC',
+        record: '9-4',
+        ranking: '#18',
+        colors: ['#73000A', '#000000']
+    },
+    'tennessee': {
+        name: 'Tennessee Volunteers',
+        conference: 'SEC',
+        record: '10-3',
+        ranking: '#7',
+        colors: ['#FF8200', '#FFFFFF']
+    },
+    'missouri': {
+        name: 'Missouri Tigers',
+        conference: 'SEC',
+        record: '9-4',
+        ranking: '#19',
+        colors: ['#F1B82D', '#000000']
+    },
+    'mercer': {
+        name: 'Mercer Bears',
+        conference: 'SoCon',
+        record: '9-4',
+        ranking: 'Unranked',
+        colors: ['#FF7900', '#000000']
+    },
+    'oklahoma': {
+        name: 'Oklahoma Sooners',
+        conference: 'SEC',
+        record: '6-7',
+        ranking: 'Unranked',
+        colors: ['#841617', '#FDF9C7']
+    },
+    'auburn': {
+        name: 'Auburn Tigers',
+        conference: 'SEC',
+        record: '5-7',
+        ranking: 'Unranked',
+        colors: ['#0C2340', '#DD550C']
     }
 };
 
 // Dad added ↓
-// Sample game results data
+// Real Alabama 2024 season game results
 const gameResults = [
     {
         home: 'alabama',
-        away: 'georgia',
-        homeScore: 27,
-        awayScore: 30,
-        date: '2024-12-07'
+        away: 'western-kentucky',
+        homeScore: 63,
+        awayScore: 0,
+        date: '2024-08-31'
     },
     {
-        home: 'ohio-state',
-        away: 'michigan',
-        homeScore: 20,
-        awayScore: 24,
+        home: 'alabama',
+        away: 'south-florida',
+        homeScore: 42,
+        awayScore: 16,
+        date: '2024-09-07'
+    },
+    {
+        home: 'wisconsin',
+        away: 'alabama',
+        homeScore: 10,
+        awayScore: 42,
+        date: '2024-09-14'
+    },
+    {
+        home: 'alabama',
+        away: 'georgia',
+        homeScore: 41,
+        awayScore: 34,
+        date: '2024-09-28'
+    },
+    {
+        home: 'vanderbilt',
+        away: 'alabama',
+        homeScore: 40,
+        awayScore: 35,
+        date: '2024-10-05'
+    },
+    {
+        home: 'alabama',
+        away: 'south-carolina',
+        homeScore: 27,
+        awayScore: 25,
+        date: '2024-10-12'
+    },
+    {
+        home: 'tennessee',
+        away: 'alabama',
+        homeScore: 24,
+        awayScore: 17,
+        date: '2024-10-19'
+    },
+    {
+        home: 'alabama',
+        away: 'missouri',
+        homeScore: 34,
+        awayScore: 0,
+        date: '2024-10-26'
+    },
+    {
+        home: 'lsu',
+        away: 'alabama',
+        homeScore: 13,
+        awayScore: 42,
+        date: '2024-11-09'
+    },
+    {
+        home: 'alabama',
+        away: 'mercer',
+        homeScore: 52,
+        awayScore: 7,
+        date: '2024-11-16'
+    },
+    {
+        home: 'oklahoma',
+        away: 'alabama',
+        homeScore: 24,
+        awayScore: 3,
+        date: '2024-11-23'
+    },
+    {
+        home: 'alabama',
+        away: 'auburn',
+        homeScore: 28,
+        awayScore: 14,
         date: '2024-11-30'
     },
     {
-        home: 'texas',
-        away: 'lsu',
-        homeScore: 31,
-        awayScore: 28,
-        date: '2024-11-23'
+        home: 'michigan',
+        away: 'alabama',
+        homeScore: 19,
+        awayScore: 13,
+        date: '2024-12-31',
+        bowlGame: 'ReliaQuest Bowl'
     }
 ];
 // Dad added ↑
@@ -179,24 +320,55 @@ function displayGameResults() {
     const resultsContainer = document.getElementById('game-results-container');
     if (!resultsContainer) return;
 
-    resultsContainer.innerHTML = ''; // clear old results
+    resultsContainer.innerHTML = '<h3>Alabama Crimson Tide 2024 Season Results (9-4)</h3>'; // clear old results and add header
 
     gameResults.forEach(game => {
         const homeTeam = teamData[game.home];
         const awayTeam = teamData[game.away];
 
+        // Handle case where team might not be in our database
+        const homeTeamName = homeTeam ? homeTeam.name : game.home.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const awayTeamName = awayTeam ? awayTeam.name : game.away.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+
         const gameDiv = document.createElement('div');
         gameDiv.classList.add('game-result');
 
+        // Determine if Alabama won
+        const alabamaWon = (game.home === 'alabama' && game.homeScore > game.awayScore) ||
+                          (game.away === 'alabama' && game.awayScore > game.homeScore);
+
+        gameDiv.style.backgroundColor = alabamaWon ? '#e8f5e8' : '#ffe8e8';
+        gameDiv.style.border = alabamaWon ? '2px solid #4caf50' : '2px solid #f44336';
+        gameDiv.style.margin = '10px 0';
+        gameDiv.style.padding = '10px';
+        gameDiv.style.borderRadius = '5px';
+
+        let gameTitle = game.bowlGame ? `${game.bowlGame}: ` : '';
+
         gameDiv.innerHTML = `
-            <strong>${homeTeam.name}</strong> (${game.homeScore}) 
-            vs 
-            <strong>${awayTeam.name}</strong> (${game.awayScore}) 
-            <br><small>${new Date(game.date).toLocaleDateString()}</small>
+            <div style="font-weight: bold; margin-bottom: 5px;">
+                ${gameTitle}<strong>${homeTeamName}</strong> ${game.homeScore} - ${game.awayScore} <strong>${awayTeamName}</strong>
+                <span style="float: right; color: ${alabamaWon ? 'green' : 'red'};">${alabamaWon ? 'W' : 'L'}</span>
+            </div>
+            <small style="color: #666;">${new Date(game.date).toLocaleDateString()}</small>
         `;
 
         resultsContainer.appendChild(gameDiv);
     });
+
+    // Add season summary
+    const summaryDiv = document.createElement('div');
+    summaryDiv.style.marginTop = '20px';
+    summaryDiv.style.padding = '15px';
+    summaryDiv.style.backgroundColor = '#f0f0f0';
+    summaryDiv.style.borderRadius = '5px';
+    summaryDiv.innerHTML = `
+        <h4>Season Summary:</h4>
+        <p><strong>Final Record:</strong> 9-4 (5-3 SEC)</p>
+        <p><strong>Final Ranking:</strong> #17 AP Poll</p>
+        <p><strong>Bowl Game:</strong> ReliaQuest Bowl vs Michigan (Loss 13-19)</p>
+    `;
+    resultsContainer.appendChild(summaryDiv);
 }
 // Dad added ↑
 
